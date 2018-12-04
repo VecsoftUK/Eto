@@ -1,4 +1,4 @@
-﻿using swf = System.Windows.Forms;
+using swf = System.Windows.Forms;
 using Eto.Forms;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -45,6 +45,9 @@ namespace Eto.WinForms
 
 		static Keys Find(swf.Keys key)
 		{
+			if (key == swf.Keys.None)
+				return Keys.None;
+
 			Keys mapped;
 			if (Map.TryGetValue(key, out mapped))
 				return mapped;
