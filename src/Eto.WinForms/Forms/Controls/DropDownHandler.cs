@@ -124,7 +124,7 @@ namespace Eto.WinForms.Forms.Controls
 				string text = item?.ToString();
 
 				// Determine the forecolor based on whether or not the item is selected    
-				swf.TextRenderer.DrawText(e.Graphics, text, Font, bounds, ForeColor, swf.TextFormatFlags.Left);
+				swf.TextRenderer.DrawText(e.Graphics, text, Font, bounds, e.ForeColor, swf.TextFormatFlags.Left);
 			}
 
 			e.DrawFocusRectangle();
