@@ -764,7 +764,20 @@ namespace Eto.WinForms
 		{
 			if (sdbitmap == null)
 				return null;
-			return new Bitmap(new BitmapHandler(sdbitmap));
+
+			if (Platform.Instance.IsWinForms)
+				return new Bitmap(new BitmapHandler(sdbitmap));
+
+			// TODO: Pass resolution as optional parameter?
+			sdbitmap.SetResolution(96, 96);
+			
+			using (var ms = new System.IO.MemoryStream())
+			{
+				sdbitmap.Save(ms, sdi.ImageFormat.Png);
+				ms.Seek(0, System.IO.SeekOrigin.Begin);
+
+				return new Bitmap(ms);
+			}
 		}
 
 		public static swf.DragDropEffects ToSwf(this DragEffects action)
